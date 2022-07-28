@@ -1,10 +1,12 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
-import MobileMenu from '../MobileMenu';
+import { COLORS, QUERIES, WEIGHTS } from "../../constants";
+import Icon from "../Icon";
+import Logo from "../Logo";
+import MobileMenu from "../MobileMenu";
+import SuperHeader from "../SuperHeader";
+import UnstyledButton from "../UnstyledButton";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -29,6 +31,17 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <IconContainer>
+          <UnstyledButton>
+            <Icon id="shopping-bag" strokeWidth={1} />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="search" strokeWidth={1} />
+          </UnstyledButton>
+          <UnstyledButton>
+            <Icon id="menu" strokeWidth={1} />
+          </UnstyledButton>
+        </IconContainer>
         <Side />
       </MainHeader>
 
@@ -49,9 +62,25 @@ const MainHeader = styled.div`
 `;
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   gap: 48px;
   margin: 0px 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  /* gap: clamp(20px, 2vw-1rem, 40px); */
+  gap: 20px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
